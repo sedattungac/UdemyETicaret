@@ -1,0 +1,67 @@
+﻿@model IEnumerable<UdemyETicaret.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="float-left">
+        <h3>Kategori Listesi</h3>
+    </div>
+    <div class="float-lg-right">
+        <a asp-action="Create" class="btn btn-primary btn-sm">Kategori Ekle</a>
+    </div>
+    <table class="table" id="example">
+        <thead>
+            <tr>
+                <th>
+                    Kategori Adı
+                </th>
+                <th>
+                    Görünürlük
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    @if (item.CategoryStatus == true)
+                    {
+                        <td>
+                            <a @*class="btn btn-primary btn-sm text-white"*@><i class="bi bi-eye"></i> Görünür</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a @*class="btn btn-secondary btn-sm  text-white"*@><i class="fas fa-eye"></i> Gizli</a>
+                        </td>
+                    }
+
+                    <td>
+                        <a class="btn btn-warning btn-sm text-white" asp-action="Edit" asp-route-id="@item.CategoryID"><i class="bi bi-pencil"></i> Düzenle</a> |
+                        <a class="btn btn-success btn-sm text-white" asp-action="Details" asp-route-id="@item.CategoryID">Detay</a> |
+                        <a class="btn btn-danger btn-sm text-white" asp-action="Delete" asp-route-id="@item.CategoryID"><i class="bi bi-trash"></i> Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts{ 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            }
+        });
+    });
+</script>
+}

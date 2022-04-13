@@ -1,0 +1,40 @@
+﻿@model UdemyETicaret.Models.Category
+
+@{
+    ViewData["Title"] = "Kategori Sil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Kategori Sil</h1>
+
+<div>
+    <h4>Silmek istediğinize emin misiniz?</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoryStatus)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CategoryID" />
+        <div class="form-group">
+            <div class="float-left">
+                <a class="btn btn-primary btn-sm text-white" asp-action="Index">Listeye Dön</a>
+            </div> &nbsp;
+            <div class="float-right">
+                <input type="submit" value="Sil" class="btn btn-danger  btn-sm text-white" />
+
+            </div>
+        </div>
+    </form>
+</div>
